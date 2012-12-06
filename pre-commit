@@ -41,9 +41,9 @@ def main():
         print "Error: select and ignore codes are mutually exclusive"
         sys.exit(1)
     elif select_codes:
-        output = system('pep8', '--select', ''.join(ignore_codes, ","), '.', cwd=tempdir)
+        output = system('pep8', '--select', ','.join(ignore_codes), '.', cwd=tempdir)
     elif ignore_codes:
-        output = system('pep8', '--ignore', ''.join(ignore_codes, ","), '.', cwd=tempdir)
+        output = system('pep8', '--ignore', ','.join(ignore_codes), '.', cwd=tempdir)
     else:
         output = system('pep8', '.', cwd=tempdir)
     shutil.rmtree(tempdir)
