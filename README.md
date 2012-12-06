@@ -14,7 +14,8 @@ Installation:
 The hook can be overridden: ```$ git commit --no-verify```
 
 Currently, PEP8 code E124 is ignored.  In case you want to modify the
-list of codes to ignore, edit the ```ignore_codes``` line in the pre-commit
+list of codes to ignore, edit the ```ignore_codes``` list in the pre-commit
 file.
+If you want to select only specific codes to scan for, edit the ```select_codes``` list.
 
 This code was forked from [https://gist.github.com/810399](https://gist.github.com/810399).

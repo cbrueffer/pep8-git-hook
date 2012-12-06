@@ -10,7 +10,9 @@ import subprocess
 import sys
 import tempfile
 
-ignore_codes = "E124"
+# don't fill in both of these
+select_codes = []
+ignore_codes = ["E124"]
 
 
 def system(*args, **kwargs):
@@ -34,8 +36,14 @@ def main():
             os.makedirs(filepath)
         with file(filename, 'w') as f:
             system('git', 'show', ':' + name, stdout=f)
-    if ignore_codes:
-        output = system('pep8', '--ignore', ignore_codes, '.', cwd=tempdir)
+
+    if select_codes and ignore_codes:
+        print "Error: select and ignore codes are mutually exclusive"
+        sys.exit(1)
+    elif select_codes:
+        output = system('pep8', '--select', ''.join(ignore_codes, ","), '.', cwd=tempdir)
+    elif ignore_codes:
+        output = system('pep8', '--ignore', ''.join(ignore_codes, ","), '.', cwd=tempdir)
     else:
         output = system('pep8', '.', cwd=tempdir)
     shutil.rmtree(tempdir)
