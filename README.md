@@ -13,9 +13,25 @@ Installation:
 
 The hook can be overridden: ```$ git commit --no-verify```
 
-Currently, PEP8 code E124 is ignored.  In case you want to modify the
-list of codes to ignore, edit the ```ignore_codes``` list in the pre-commit
-file.
-If you want to select only specific codes to scan for, edit the ```select_codes``` list.
+Currently, the following PEP8 codes are checked for:
+
+E111 indentation is not a multiple of four
+E125 continuation line does not distinguish itself from next logical line
+E203 whitespace before ':'
+E261 at least two spaces before inline comment
+E262 inline comment should start with '# '
+E301 expected 1 blank line, found 0
+E302 expected 2 blank lines, found 1
+E303 too many blank lines (2)
+E502 the backslash is redundant between brackets
+E701 multiple statements on one line (colon)
+E711 comparison to None should be 'if cond is None:'
+W291 trailing whitespace
+W293 blank line contains whitespace
+
+In case you want to modify the list of codes to ignore, edit the
+```ignore_codes``` list in the pre-commit file.
+If you want to select only specific codes to scan for, use the
+```select_codes``` list.
 
 This code was forked from [https://gist.github.com/810399](https://gist.github.com/810399).

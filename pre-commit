@@ -11,8 +11,9 @@ import sys
 import tempfile
 
 # don't fill in both of these
-select_codes = []
-ignore_codes = ["E124"]
+select_codes = ["E111", "E125", "E203", "E261", "E262", "E301", "E302", "E303",
+                "E502", "E701", "E711", "W291", "W293"]
+ignore_codes = []
 
 
 def system(*args, **kwargs):
@@ -41,7 +42,7 @@ def main():
         print "Error: select and ignore codes are mutually exclusive"
         sys.exit(1)
     elif select_codes:
-        output = system('pep8', '--select', ','.join(ignore_codes), '.', cwd=tempdir)
+        output = system('pep8', '--select', ','.join(select_codes), '.', cwd=tempdir)
     elif ignore_codes:
         output = system('pep8', '--ignore', ','.join(ignore_codes), '.', cwd=tempdir)
     else:
