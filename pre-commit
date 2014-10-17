@@ -2,7 +2,7 @@
 """
 Forked from https://gist.github.com/810399
 """
-from __future__ import with_statement
+from __future__ import with_statement, print_function
 import os
 import re
 import shutil
@@ -25,7 +25,7 @@ def system(*args, **kwargs):
 
 def main():
     modified = re.compile('^[AM]+\s+(?P<name>.*\.py)', re.MULTILINE)
-    files = system('git', 'status', '--porcelain')
+    files = system('git', 'status', '--porcelain').decode("utf-8")
     files = modified.findall(files)
 
     tempdir = tempfile.mkdtemp()
@@ -35,11 +35,11 @@ def main():
 
         if not os.path.exists(filepath):
             os.makedirs(filepath)
-        with file(filename, 'w') as f:
+        with open(filename, 'w') as f:
             system('git', 'show', ':' + name, stdout=f)
 
     if select_codes and ignore_codes:
-        print "Error: select and ignore codes are mutually exclusive"
+        print(u'Error: select and ignore codes are mutually exclusive')
         sys.exit(1)
     elif select_codes:
         output = system('pep8', '--select', ','.join(select_codes), '.', cwd=tempdir)
@@ -49,9 +49,9 @@ def main():
         output = system('pep8', '.', cwd=tempdir)
     shutil.rmtree(tempdir)
     if output:
-        print 'PEP8 style violations have been detected.  Please fix them\n' \
-	      'or force the commit with "git commit --no-verify".\n'
-        print output,
+        print(u'PEP8 style violations have been detected.  Please fix them\n' \
+	      'or force the commit with "git commit --no-verify".\n')
+        print(output.decode("utf-8"),)
         sys.exit(1)
 
 
