@@ -49,8 +49,8 @@ def main():
         output = system('pep8', '.', cwd=tempdir)
     shutil.rmtree(tempdir)
     if output:
-        print(u'PEP8 style violations have been detected.  Please fix them\n' \
-	      'or force the commit with "git commit --no-verify".\n')
+        print(u'PEP8 style violations have been detected.  Please fix them\n'
+              'or force the commit with "git commit --no-verify".\n')
         print(output.decode("utf-8"),)
         sys.exit(1)
 
