@@ -48,6 +48,7 @@ def main():
         args.extend(('--select', ','.join(select_codes)))
     elif ignore_codes:
         args.extend(('--ignore', ','.join(ignore_codes)))
+    args.extend(overrides)
     args.append('.')
     output = system(*args, cwd=tempdir)
     shutil.rmtree(tempdir)
