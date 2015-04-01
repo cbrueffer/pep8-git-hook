@@ -33,5 +33,6 @@ In case you want to modify the list of codes to ignore, edit the
 ```ignore_codes``` list in the pre-commit file.   
 If you want to select only specific codes to scan for, use the
 ```select_codes``` list.
+Additional arguments to the pep8 program (e.g., ```--max-line-length=120```) can be added to the ```overrides``` list.
 
 This code was forked from [https://gist.github.com/810399](https://gist.github.com/810399).
