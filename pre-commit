@@ -26,7 +26,7 @@ def system(*args, **kwargs):
 
 
 def main():
-    modified = re.compile('^[AM]+\s+(?P<name>.*\.py)', re.MULTILINE)
+    modified = re.compile('^[AM]+\s+(?P<name>.*\.py$)', re.MULTILINE)
     files = system('git', 'status', '--porcelain').decode("utf-8")
     files = modified.findall(files)
 
