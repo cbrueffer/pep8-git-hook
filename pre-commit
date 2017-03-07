@@ -40,7 +40,7 @@ def main():
         with open(filename, 'w') as f:
             system('git', 'show', ':' + name, stdout=f)
 
-    args = ['pep8']
+    args = ['pycodestyle']
     if select_codes and ignore_codes:
         print(u'Error: select and ignore codes are mutually exclusive')
         sys.exit(1)
